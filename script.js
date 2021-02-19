@@ -10,7 +10,7 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword());
+generateBtn.addEventListener("click", writePassword);
 
 // My code for generating password
 function generatePassword() {
@@ -18,9 +18,6 @@ function generatePassword() {
       var charLength = getCharLength();
       // Prompt user for password options and verify all input
       var charOptions = gatherOptions();
-      // Print to console log for debugging purposes/make sure values are passed properly
-      console.log("generatePassword() charOptions = " + charOptions);
-      console.log("generatePassword() charLength = " + charLength);
 
       // set banks of random characters to choose from for each char type
       var numberOptions = [0,1,2,3,4,5,6,7,8,9];
@@ -39,26 +36,23 @@ function generatePassword() {
 
         // make sure random char type is allowed by user selection, if it is then use getRandomValue to return random character from that bank of chars, add to password
         if ((whichChar === 0) && (charOptions[0])) {
-            //console.log(getRandomValue(uppCaseOptions));
             genPassword = genPassword.concat(getRandomValue(uppCaseOptions));
             i++;
         }
         else if ((whichChar === 1) && (charOptions[1])) {
-            //console.log(getRandomValue(lowCaseOptions));
             genPassword = genPassword.concat(getRandomValue(lowCaseOptions));
             i++;
         }
         else if ((whichChar === 2) && (charOptions[2])) {
-            //console.log(getRandomValue(numberOptions));
             genPassword = genPassword.concat(getRandomValue(numberOptions));
             i++;
         }
         else if ((whichChar === 3) && (charOptions[3])) {
-            //console.log(getRandomValue(specCharOptions));
             genPassword = genPassword.concat(getRandomValue(specCharOptions));
             i++;
         }
       }
+      
       return genPassword;
 }
 
@@ -68,7 +62,6 @@ function getCharLength() {
   var passLength = prompt("How many characters? (Rules: 8-128, must be numbers)");
   // Verify input meets rules, if it does then return value otherwise ask again
   if ((passLength >= 8) && (!isNaN(passLength)) && (passLength <= 128)) {
-     console.log("User wants password " + passLength + " characters long.");
      return passLength; 
   }
   else {
@@ -86,12 +79,10 @@ function getCharOptions(characterType) {
   }
   // if user entered a letter and it equals Y, then stop
   else if (isNaN(userChoice) && (userChoice === "Y")) {
-    console.log("User DOES want to include " + characterType);
     return true;
   }
   // if user entered letter and it equals N, then stop
   else if (isNaN(userChoice) && (userChoice === "N")) {
-    console.log("User DOES NOT want to include " + characterType);
     return false;
   }
   // input is wrong, keep asking until it's right or cancelled
@@ -116,11 +107,9 @@ function gatherOptions () {
 
   if (optionCount == 0) {
     alert("You must pick at least one option!");
-    console.log("gatherptions(): No options were chosen, repeat.");
     return gatherOptions();
   }
   else {
-    console.log("gatherOptions(): At least one option was chosen...proceed.");
     return passwordComp;
   }
 }
