@@ -92,12 +92,12 @@ function generatePassword(charLength,charOptions) {
 
   // genPassword stores randomly generated password
   var genPassword = "";
-  var i = 0;
-
-  // variable to make sure all options chosen
+  
+  // this array is identical in structure to charOptions, trip each type IF it's used. compare at end to make sure password meets specs.
   var isCharTypePresent = [false,false,false,false]; 
 
   // loop through each character in generated password, choose only those options selected by user and add them to the password genPassword
+  var i = 0;
   while (i < charLength) {
     // randomize which data type in whichChar 
     var whichChar = Math.floor(Math.random() * 4);
@@ -124,7 +124,8 @@ function generatePassword(charLength,charOptions) {
         i++;
     }
   }
-  // verify password meets user criteria...if not, generate another one
+
+  // verify password meets user criteria...if not, generate another one until it does
   if (String(isCharTypePresent) === String(charOptions)) {
     return genPassword;
   }
