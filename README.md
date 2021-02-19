@@ -1,4 +1,4 @@
-# Password Generator - Due 2/22/21
+# Password Generator 
 
 ## Description
 
